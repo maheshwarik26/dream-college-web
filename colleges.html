@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload Colleges to Firebase</title>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+      import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDiiX2W3PChyQNIVaGm1ZYPS_ERvz9EHS0",
+        authDomain: "dream-college-web.firebaseapp.com",
+        projectId: "dream-college-web",
+        storageBucket: "dream-college-web.firebasestorage.app",
+        messagingSenderId: "938247340861",
+        appId: "1:938247340861:web:40a9b9301fbe0e11353b54",
+        
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      const colleges = [
+      {
+      "NAME": "COEP Pune",
+      "CITY": "Pune",
+      "STATE": "Maharashtra",
+      "STREAM": "Computer Science",
+      "RANKING": "5",
+      "TYPE OF COLLEGE": "Autonomous",
+      "WEBSITE": "https://www.coep.org.in"
+    },
+    {
+      "NAME": "VJTI Mumbai",
+      "CITY": "Mumbai",
+      "STATE": "Maharashtra",
+      "STREAM": "Mechanical Engineering",
+      "RANKING": "8",
+      "TYPE OF COLLEGE": "Government",
+      "WEBSITE": "https://www.vjti.ac.in"
+    },
+    {
+      "NAME": "SPIT Mumbai",
+      "CITY": "Mumbai",
+      "STATE": "Maharashtra",
+      "STREAM": "Electronics & Telecommunication",
+      "RANKING": "10",
+      "TYPE OF COLLEGE": "Autonomous",
+      "WEBSITE": "https://www.spit.ac.in"
+    },
+    {
+      "NAME": "MIT Pune",
+      "CITY": "Pune",
+      "STATE": "Maharashtra",
+      "STREAM": "Civil Engineering",
+      "RANKING": "12",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.mitpune.edu.in"
+    },
+    {
+      "NAME": "ICT Mumbai",
+      "CITY": "Mumbai",
+      "STATE": "Maharashtra",
+      "STREAM": "Chemical Engineering",
+      "RANKING": "6",
+      "TYPE OF COLLEGE": "Autonomous",
+      "WEBSITE": "https://www.ictmumbai.edu.in"
+    },
+    {
+      "NAME": "Sinhgad College of Engineering",
+      "CITY": "Pune",
+      "STATE": "Maharashtra",
+      "STREAM": "Information Technology",
+      "RANKING": "20",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.sinhgad.edu"
+    },
+    {
+      "NAME": "Vishwakarma Institute of Technology",
+      "CITY": "Pune",
+      "STATE": "Maharashtra",
+      "STREAM": "Computer Engineering",
+      "RANKING": "18",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.vit.edu"
+    },
+    {
+      "NAME": "Fr. Conceicao Rodrigues College of Engineering",
+      "CITY": "Mumbai",
+      "STATE": "Maharashtra",
+      "STREAM": "Electrical Engineering",
+      "RANKING": "15",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.fcrce.ac.in"
+    },
+    {
+      "NAME": "K J Somaiya College of Engineering",
+      "CITY": "Mumbai",
+      "STATE": "Maharashtra",
+      "STREAM": "Mechanical Engineering",
+      "RANKING": "9",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.somaiya.edu"
+    },
+    {
+      "NAME": "Shivaji University Kolhapur",
+      "CITY": "Kolhapur",
+      "STATE": "Maharashtra",
+      "STREAM": "Electrical Engineering",
+      "RANKING": "17",
+      "TYPE OF COLLEGE": "Government",
+      "WEBSITE": "https://www.unishivaji.ac.in"
+    },
+    {
+      "NAME": "Rajiv Gandhi Institute of Technology",
+      "CITY": "Mumbai",
+      "STATE": "Maharashtra",
+      "STREAM": "Civil Engineering",
+      "RANKING": "22",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.ritmumbai.edu.in"
+    },
+    {
+      "NAME": "Sardar Patel College of Engineering",
+      "CITY": "Mumbai",
+      "STATE": "Maharashtra",
+      "STREAM": "Electronics Engineering",
+      "RANKING": "11",
+      "TYPE OF COLLEGE": "Government",
+      "WEBSITE": "https://www.spce.ac.in"
+    },
+    {
+      "NAME": "Government College of Engineering, Jalgaon",
+      "CITY": "Jalgaon",
+      "STATE": "Maharashtra",
+      "STREAM": "Computer Science",
+      "RANKING": "25",
+      "TYPE OF COLLEGE": "Government",
+      "WEBSITE": "https://www.gecjalgaon.ac.in"
+    },
+    {
+      "NAME": "Government College of Engineering, Nagpur",
+      "CITY": "Nagpur",
+      "STATE": "Maharashtra",
+      "STREAM": "Civil Engineering",
+      "RANKING": "14",
+      "TYPE OF COLLEGE": "Government",
+      "WEBSITE": "https://www.gecnagpur.ac.in"
+    },
+    {
+      "NAME": "GCOE Amravati",
+      "CITY": "Amravati",
+      "STATE": "Maharashtra",
+      "STREAM": "Electrical Engineering",
+      "RANKING": "19",
+      "TYPE OF COLLEGE": "Government",
+      "WEBSITE": "https://www.gcoeamaravati.ac.in"
+    },
+    {
+      "NAME": "Shivaji College of Engineering",
+      "CITY": "Nagpur",
+      "STATE": "Maharashtra",
+      "STREAM": "Mechanical Engineering",
+      "RANKING": "23",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.sce.edu.in"
+    },
+    {
+      "NAME": "Vishwakarma Institute of Information Technology",
+      "CITY": "Pune",
+      "STATE": "Maharashtra",
+      "STREAM": "IT Engineering",
+      "RANKING": "28",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.viit.ac.in"
+    },
+    {
+      "NAME": "Dr. Babasaheb Ambedkar Marathwada University",
+      "CITY": "Aurangabad",
+      "STATE": "Maharashtra",
+      "STREAM": "Civil Engineering",
+      "RANKING": "26",
+      "TYPE OF COLLEGE": "Government",
+      "WEBSITE": "https://www.bamu.ac.in"
+    },
+    {
+      "NAME": "Smt. Kashibai Navale College of Engineering",
+      "CITY": "Pune",
+      "STATE": "Maharashtra",
+      "STREAM": "Computer Science",
+      "RANKING": "30",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.skncoe.ac.in"
+    },
+    {
+      "NAME": "Bharati Vidyapeeth College of Engineering",
+      "CITY": "Pune",
+      "STATE": "Maharashtra",
+      "STREAM": "Electrical Engineering",
+      "RANKING": "24",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.bvcoepune.edu.in"
+    },
+    {
+      "NAME": "D.Y. Patil College of Engineering",
+      "CITY": "Pune",
+      "STATE": "Maharashtra",
+      "STREAM": "Mechanical Engineering",
+      "RANKING": "27",
+      "TYPE OF COLLEGE": "Private",
+      "WEBSITE": "https://www.dypcoe.edu.in"
+    }
+  
+      ];
+
+      async function uploadColleges() {
+        const statusDiv = document.getElementById("status");
+        for (let college of colleges) {
+          try {
+            await addDoc(collection(db, "colleges"), college);
+            console.log("✅ Added:", college.NAME);
+          } catch (err) {
+            console.error("❌ Error:", college.NAME, err);
+            statusDiv.innerText += `Error adding ${college.NAME}\n`;
+          }
+        }
+        statusDiv.innerText += "🎉 All colleges uploaded!";
+      }
+
+      window.onload = uploadColleges;
+    </script>
+  </head>
+  <body>
+    <h2>Uploading Colleges to Firebase...</h2>
+    <div id="status"></div>
+  </body>
+</html>
