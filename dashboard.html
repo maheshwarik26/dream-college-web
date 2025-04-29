@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            left: -250px;
+            top: 0;
+            background: #343a40;
+            padding-top: 20px;
+            transition: 0.3s;
+        }
+        .sidebar a {
+            padding: 10px 20px;
+            display: block;
+            color: white;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background: #495057;
+        }
+        .open-sidebar {
+            left: 0;
+        }
+        .menu-btn {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Google Search Bar Only -->
+        <form class="d-flex mb-3" action="https://www.google.com/search" method="GET" target="_blank">
+            <input class="form-control me-4" type="search" name="q" placeholder="Search Google..." aria-label="Search" required>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+
+    <div class="menu-btn" onclick="toggleSidebar()">&#9776;</div>
+    <div id="sidebar" class="sidebar">
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+        <a href="profile.html">Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Privacy</a>
+        <a href="about.html">About</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+    
+    
+    <h1 class="mb-4">Explore Engineering Colleges</h1>
+
+        <h2 class="mb-3">Find Your Dream College</h2>
+        <form id="college-form" class="row g-3">
+            <div class="col-12">
+                <label class="form-label">STATE</label>
+                <select class="form-select" id="state" name="state">
+                    <option value="">--Select State--</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <label class="form-label">CITY</label>
+                <select class="form-select" id="city" name="city">
+                    <option value="">--Select City--</option>
+                    <option value="Ahmednagar">Ahmednagar</option>
+                    <option value="Akola">Akola</option>
+                    <option value="Amravati">Amravati</option>
+                    <option value="Aurangabad">Aurangabad</option>
+                    <option value="Beed">Beed</option>
+                    <option value="Bhandara">Bhandara</option>
+                    <option value="Buldhana">Buldhana</option>
+                    <option value="Chandrapur">Chandrapur</option>
+                    <option value="Dhule">Dhule</option>
+                    <option value="Gadchiroli">Gadchiroli</option>
+                    <option value="Gondia">Gondia</option>
+                    <option value="Hingoli">Hingoli</option>
+                    <option value="Jalgaon">Jalgaon</option>
+                    <option value="Jalna">Jalna</option>
+                    <option value="Kolhapur">Kolhapur</option>
+                    <option value="Latur">Latur</option>
+                    <option value="Mumbai City">Mumbai City</option>
+                    <option value="Mumbai Suburban">Mumbai Suburban</option>
+                    <option value="Nagpur">Nagpur</option>
+                    <option value="Nanded">Nanded</option>
+                    <option value="Nandurbar">Nandurbar</option>
+                    <option value="Nasik">Nasik</option>
+                    <option value="Osmanabad">Osmanabad</option>
+                    <option value="Palghar">Palghar</option>
+                    <option value="Parbhani">Parbhani</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Raigad">Raigad</option>
+                    <option value="Ratnagiri">Ratnagiri</option>
+                    <option value="Sangli">Sangli</option>
+                    <option value="Satara">Satara</option>
+                    <option value="Sindhudurg">Sindhudurg</option>
+                    <option value="Solapur">Solapur</option>
+                    <option value="Thane">Thane</option>
+                    <option value="Wardha">Wardha</option>
+                    <option value="Washim">Washim</option>
+                    <option value="Yavatmal">Yavatmal</option>
+
+                </select>
+            </div>
+            <div class="col-12">
+                <label class="form-label">STREAM</label>
+                <select class="form-select" id="stream" name="stream">
+                    <option value="">--Select Stream--</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Civil">Civil</option>
+                    <option value="Chemical">Chemical</option>
+                    <option value="Biotechnology">Biotechnology</option>
+                    <option value="Aerospace">Aerospace</option>
+                    <option value="Automobile">Automobile</option>
+                    <option value="Mining">Mining</option>
+                    <option value="Agricultural">Agricultural</option>
+                    <option value="Environmental">Environmental</option>
+                    <option value="Industrial">Industrial</option>
+                    <option value="Mechatronics">Mechatronics</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Production">Production</option>
+                    <option value="Robotics">Robotics</option>
+                    <option value="Materials Science">Materials Science</option>
+                    <option value="Structural Engineering">Structural Engineering</option>
+                    <option value="Telecommunication">Telecommunication</option>
+                    
+                </select>
+            </div>
+            <div class="col-12">
+                <label class="form-label">TYPE OF COLLEGE</label>
+                <select class="form-select" id="college-type" name="college-type">
+                    <option value="Autonomous">Autonomous</option>
+                    <option value="Non-Autonomous">Non-Autonomous</option>
+                    <option value="Government">Government</option>
+                 
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Find Colleges</button>
+             </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          function toggleSidebar() {
+            let sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("open-sidebar");
+          }
+      
+          function logout() {
+            window.location.href = "index.html";
+          }
+      
+          const cityData = {
+            "Maharashtra": [
+              "Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana", "Chandrapur",
+              "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur",
+              "Mumbai City", "Mumbai Suburban", "Nagpur", "Nanded", "Nandurbar", "Nasik", "Osmanabad",
+              "Palghar", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sangli", "Satara", "Sindhudurg",
+              "Solapur", "Thane", "Wardha", "Washim", "Yavatmal"
+            ]
+          };
+      
+          document.getElementById("state").addEventListener("change", function () {
+            let selectedState = this.value;
+            let cityDropdown = document.getElementById("city");
+            cityDropdown.innerHTML = '<option value="">--Select City--</option>';
+      
+            if (selectedState && cityData[selectedState]) {
+              cityData[selectedState].forEach(CITY => {
+                let option = document.createElement("option");
+                option.value = city;
+                option.textContent = city;
+                cityDropdown.appendChild(option);
+              });
+            }
+          });
+      
+          function searchCollege() {
+            let query = document.getElementById("top-search").value.trim();
+            if (query) {
+              window.location.href = `college.html?search=${encodeURIComponent(query)}`;
+            } else {
+              alert("Please enter a search term!");
+            }
+          }
+      
+        //  document.getElementById("search-btn").addEventListener("click", searchCollege);
+        });
+      </script>
+      
+
+    
+      <script>
+        document.getElementById("college-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            // Get values
+            var state = document.getElementById("state").value;
+            var city = document.getElementById("city").value;
+            var stream = document.getElementById("stream").value;
+            var collegeType = document.getElementById("college-type").value;
+    
+            // Validate inputs
+            if (!state || !city || !stream || !collegeType) {
+                alert("Please fill in all the fields.");
+                return;
+            }
+    
+            // Build query string
+            var query = `?state=${encodeURIComponent(state.toLowerCase())}&city=${encodeURIComponent(city.toLowerCase())}&stream=${encodeURIComponent(stream.toLowerCase())}&type=${encodeURIComponent(collegeType.toLowerCase())}`;
+    
+            // Debugging: Log the query string
+            console.log("Redirecting to:", "searchResults.html" + query.toUpperCase());
+    
+            // Redirect to searchResults.html
+            window.location.href = "searchResults.html" + query;
+        });
+    </script>
+      
+</body>
+</html>
